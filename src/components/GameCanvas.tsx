@@ -144,9 +144,18 @@ export default function GameCanvas({ score, setScore, lives, setLives, onGameOve
         if (distance < item.size) {
           // Check if it's a trap item
           if (item.isTrap) {
+            // Haptic feedback for trap - strong vibration
+            if (navigator.vibrate) {
+              navigator.vibrate([100, 50, 100, 50, 100]);
+            }
             // Game over immediately if trap is slashed!
             setTimeout(() => onGameOver(), 100);
             return { ...item, slashed: true, active: false };
+          }
+
+          // Haptic feedback for successful slash - light vibration
+          if (navigator.vibrate) {
+            navigator.vibrate(20);
           }
 
           // Normal item slashed!
