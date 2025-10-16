@@ -63,8 +63,8 @@ export default function GameCanvas({ score, setScore, lives, setLives, onGameOve
         if (updated.active) {
           drawExpenseItem(ctx, updated);
           updatedItems.push(updated);
-        } else if (!updated.slashed) {
-          // Item fell off screen without being slashed
+        } else if (!updated.slashed && !updated.isTrap) {
+          // Only lose life if a normal expense item (not trap) fell off screen without being slashed
           setLives(currentLives => {
             const newLives = currentLives - 1;
             if (newLives <= 0) {
@@ -142,7 +142,14 @@ export default function GameCanvas({ score, setScore, lives, setLives, onGameOve
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < item.size) {
-          // Item slashed!
+          // Check if it's a trap item
+          if (item.isTrap) {
+            // Game over immediately if trap is slashed!
+            setTimeout(() => onGameOver(), 100);
+            return { ...item, slashed: true, active: false };
+          }
+
+          // Normal item slashed!
           setScore(currentScore => currentScore + item.points);
           slashEffectsRef.current.push(createSlashEffect(item.x, item.y, item.points));
 

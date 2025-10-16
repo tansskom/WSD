@@ -13,22 +13,33 @@ export interface ExpenseItem {
   points: number;
   active: boolean;
   slashed: boolean;
+  isTrap: boolean;
 }
 
 const expenseTypes = [
-  { emoji: '⚡', color: '#FFD700', points: 10, name: 'electricity' },
-  { emoji: '🍕', color: '#FF6B6B', points: 15, name: 'pizza' },
-  { emoji: '🛍️', color: '#4ECDC4', points: 20, name: 'shopping' },
-  { emoji: '🚗', color: '#95E1D3', points: 25, name: 'parking' },
-  { emoji: '📦', color: '#F38181', points: 15, name: 'delivery' },
-  { emoji: '🎬', color: '#AA96DA', points: 20, name: 'movie' },
-  { emoji: '☕', color: '#FCBAD3', points: 10, name: 'coffee' },
+  { emoji: '⚡', color: '#FFD700', points: 10, name: 'electricity', isTrap: false },
+  { emoji: '🍕', color: '#FF6B6B', points: 15, name: 'pizza', isTrap: false },
+  { emoji: '🛍️', color: '#4ECDC4', points: 20, name: 'shopping', isTrap: false },
+  { emoji: '🚗', color: '#95E1D3', points: 25, name: 'parking', isTrap: false },
+  { emoji: '📦', color: '#F38181', points: 15, name: 'delivery', isTrap: false },
+  { emoji: '🎬', color: '#AA96DA', points: 20, name: 'movie', isTrap: false },
+  { emoji: '☕', color: '#FCBAD3', points: 10, name: 'coffee', isTrap: false },
+];
+
+const trapTypes = [
+  { emoji: '💳', color: '#FF0000', points: 0, name: 'credit-card', isTrap: true },
+  { emoji: '🏥', color: '#DC143C', points: 0, name: 'hospital', isTrap: true },
 ];
 
 let itemIdCounter = 0;
 
 export function createExpenseItem(canvasWidth: number, canvasHeight: number): ExpenseItem {
-  const expenseType = expenseTypes[Math.floor(Math.random() * expenseTypes.length)];
+  // 20% chance to spawn a trap item
+  const isTrapSpawn = Math.random() < 0.2;
+  const itemType = isTrapSpawn
+    ? trapTypes[Math.floor(Math.random() * trapTypes.length)]
+    : expenseTypes[Math.floor(Math.random() * expenseTypes.length)];
+
   const x = Math.random() * (canvasWidth - 100) + 50;
   const y = canvasHeight + 50;
 
@@ -41,12 +52,13 @@ export function createExpenseItem(canvasWidth: number, canvasHeight: number): Ex
     rotation: Math.random() * Math.PI * 2,
     rotationSpeed: (Math.random() - 0.5) * 0.2,
     size: 40,
-    type: expenseType.name,
-    emoji: expenseType.emoji,
-    color: expenseType.color,
-    points: expenseType.points,
+    type: itemType.name,
+    emoji: itemType.emoji,
+    color: itemType.color,
+    points: itemType.points,
     active: true,
     slashed: false,
+    isTrap: itemType.isTrap,
   };
 }
 
@@ -88,6 +100,17 @@ export function drawExpenseItem(ctx: CanvasRenderingContext2D, item: ExpenseItem
   ctx.beginPath();
   ctx.arc(0, 0, item.size, 0, Math.PI * 2);
   ctx.fill();
+
+  // Add warning indicator for trap items
+  if (item.isTrap) {
+    ctx.strokeStyle = '#FFFFFF';
+    ctx.lineWidth = 3;
+    ctx.setLineDash([5, 5]);
+    ctx.beginPath();
+    ctx.arc(0, 0, item.size, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
 
   // Draw emoji
   ctx.shadowBlur = 0;
