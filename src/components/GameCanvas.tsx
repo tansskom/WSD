@@ -91,11 +91,11 @@ export default function GameCanvas({ score, setScore, lives, setLives, onGameOve
         for (let i = 1; i < slashPath.length; i++) {
           ctx.lineTo(slashPath[i].x, slashPath[i].y);
         }
-        ctx.strokeStyle = 'rgba(255, 215, 0, 0.8)';
+        ctx.strokeStyle = '#FF9900';
         ctx.lineWidth = 4;
         ctx.lineCap = 'round';
         ctx.shadowBlur = 15;
-        ctx.shadowColor = '#FFD700';
+        ctx.shadowColor = '#FF9900';
         ctx.stroke();
         ctx.shadowBlur = 0;
       }
@@ -178,29 +178,31 @@ export default function GameCanvas({ score, setScore, lives, setLives, onGameOve
   return (
     <div className="relative w-full h-full">
       {/* HUD */}
-      <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between p-4 bg-gradient-to-b from-black/40 to-transparent">
+      <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between p-4 bg-gradient-to-b from-white/60 to-transparent">
         {/* Lives */}
-        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm">
+        <div className="flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm" style={{ backgroundColor: 'rgba(102, 204, 204, 0.3)' }}>
           {[...Array(3)].map((_, i) => (
             <Heart
               key={i}
-              className={`w-6 h-6 ${
-                i < lives ? 'text-red-500 fill-red-500' : 'text-gray-500'
-              }`}
+              className="w-6 h-6"
+              style={{
+                color: i < lives ? '#F15623' : '#9CA3AF',
+                fill: i < lives ? '#F15623' : 'none'
+              }}
             />
           ))}
         </div>
 
         {/* Score */}
-        <div className="flex items-center gap-2 px-6 py-2 rounded-full bg-white/20 backdrop-blur-sm">
-          <Coins className="w-6 h-6 text-yellow-400" />
-          <span className="text-2xl font-black text-white drop-shadow-lg">{score}</span>
+        <div className="flex items-center gap-2 px-6 py-2 rounded-full backdrop-blur-sm" style={{ backgroundColor: 'rgba(102, 204, 204, 0.3)' }}>
+          <Coins className="w-6 h-6" style={{ color: '#FF9900' }} />
+          <span className="text-2xl font-black drop-shadow-lg" style={{ color: '#224B8E' }}>{score}</span>
         </div>
       </div>
 
       {/* Game Title Overlay */}
       <div className="absolute top-16 left-0 right-0 z-10 text-center pointer-events-none">
-        <p className="text-xl font-bold text-yellow-300 drop-shadow-lg animate-pulse">
+        <p className="text-xl font-bold drop-shadow-lg animate-pulse" style={{ color: '#F15623' }}>
           Slash Your Expenses!
         </p>
       </div>

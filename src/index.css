@@ -4,7 +4,7 @@
 
 @layer utilities {
   .drop-shadow-glow {
-    filter: drop-shadow(0 0 20px rgba(250, 204, 21, 0.8));
+    filter: drop-shadow(0 0 20px rgba(241, 86, 35, 0.6));
   }
 
   @keyframes float {
