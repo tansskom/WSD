@@ -178,15 +178,15 @@ export default function GameCanvas({ score, setScore, lives, setLives, onGameOve
   return (
     <div className="relative w-full h-full">
       {/* HUD */}
-      <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between p-4 bg-gradient-to-b from-white/60 to-transparent">
+      <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between p-4 bg-gradient-to-b from-black/20 to-transparent">
         {/* Lives */}
-        <div className="flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm" style={{ backgroundColor: 'rgba(102, 204, 204, 0.3)' }}>
+        <div className="flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm" style={{ backgroundColor: 'rgba(255, 255, 255, 0.2)' }}>
           {[...Array(3)].map((_, i) => (
             <Heart
               key={i}
               className="w-6 h-6"
               style={{
-                color: i < lives ? '#F15623' : '#9CA3AF',
+                color: i < lives ? '#F15623' : '#66CCCC',
                 fill: i < lives ? '#F15623' : 'none'
               }}
             />
@@ -194,9 +194,9 @@ export default function GameCanvas({ score, setScore, lives, setLives, onGameOve
         </div>
 
         {/* Score */}
-        <div className="flex items-center gap-2 px-6 py-2 rounded-full backdrop-blur-sm" style={{ backgroundColor: 'rgba(102, 204, 204, 0.3)' }}>
+        <div className="flex items-center gap-2 px-6 py-2 rounded-full backdrop-blur-sm" style={{ backgroundColor: 'rgba(255, 255, 255, 0.2)' }}>
           <Coins className="w-6 h-6" style={{ color: '#FF9900' }} />
-          <span className="text-2xl font-black drop-shadow-lg" style={{ color: '#224B8E' }}>{score}</span>
+          <span className="text-2xl font-black drop-shadow-lg" style={{ color: '#66CCCC' }}>{score}</span>
         </div>
       </div>
 

@@ -22,19 +22,19 @@ export default function StartScreen({ onStart, highScore }: StartScreenProps) {
         EXPENSE NINJA
       </h1>
 
-      <p className="mb-2 text-2xl font-bold drop-shadow-lg animate-pulse" style={{ color: '#224B8E' }}>
+      <p className="mb-2 text-2xl font-bold drop-shadow-lg animate-pulse" style={{ color: '#66CCCC' }}>
         Slash Your Expenses!
       </p>
 
-      <p className="mb-12 text-lg font-semibold drop-shadow-md" style={{ color: '#66CCCC' }}>
+      <p className="mb-12 text-lg font-semibold drop-shadow-md" style={{ color: '#FF9900' }}>
         Save Like a Ninja 🥷
       </p>
 
       {/* High Score Display */}
       {highScore > 0 && (
-        <div className="flex items-center gap-2 px-6 py-3 mb-8 rounded-full backdrop-blur-sm" style={{ backgroundColor: 'rgba(102, 204, 204, 0.2)' }}>
+        <div className="flex items-center gap-2 px-6 py-3 mb-8 rounded-full backdrop-blur-sm" style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)' }}>
           <Trophy className="w-6 h-6" style={{ color: '#FF9900' }} />
-          <span className="text-xl font-bold" style={{ color: '#224B8E' }}>Best: {highScore}</span>
+          <span className="text-xl font-bold" style={{ color: '#66CCCC' }}>Best: {highScore}</span>
         </div>
       )}
 
@@ -49,7 +49,7 @@ export default function StartScreen({ onStart, highScore }: StartScreenProps) {
       </button>
 
       {/* Instructions */}
-      <div className="mt-12" style={{ color: '#224B8E', opacity: 0.8 }}>
+      <div className="mt-12" style={{ color: '#66CCCC', opacity: 0.9 }}>
         <p className="text-sm font-medium">Swipe to slash expenses and earn coins!</p>
         <p className="text-xs mt-1">Miss 3 expenses and you're out!</p>
       </div>

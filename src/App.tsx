@@ -37,15 +37,15 @@ function App() {
   };
 
   return (
-    <div className="fixed inset-0 overflow-hidden bg-gradient-to-br from-white via-gray-50 to-gray-100">
+    <div className="fixed inset-0 overflow-hidden" style={{ background: '#224B8E' }}>
       {/* Floating financial icons background */}
-      <div className="absolute inset-0 overflow-hidden opacity-10">
-        <div className="absolute top-10 left-10 text-6xl animate-float">₹</div>
-        <div className="absolute top-20 right-20 text-7xl animate-float-delayed">$</div>
-        <div className="absolute bottom-32 left-20 text-5xl animate-float">💰</div>
-        <div className="absolute bottom-20 right-32 text-6xl animate-float-delayed">🏦</div>
-        <div className="absolute top-1/2 left-1/4 text-5xl animate-float">💵</div>
-        <div className="absolute top-1/3 right-1/4 text-6xl animate-float-delayed">🪙</div>
+      <div className="absolute inset-0 overflow-hidden opacity-20">
+        <div className="absolute top-10 left-10 text-6xl animate-float" style={{ color: '#66CCCC' }}>₹</div>
+        <div className="absolute top-20 right-20 text-7xl animate-float-delayed" style={{ color: '#FF9900' }}>$</div>
+        <div className="absolute bottom-32 left-20 text-5xl animate-float" style={{ color: '#F15623' }}>💰</div>
+        <div className="absolute bottom-20 right-32 text-6xl animate-float-delayed" style={{ color: '#66CCCC' }}>🏦</div>
+        <div className="absolute top-1/2 left-1/4 text-5xl animate-float" style={{ color: '#FF9900' }}>💵</div>
+        <div className="absolute top-1/3 right-1/4 text-6xl animate-float-delayed" style={{ color: '#F15623' }}>🪙</div>
       </div>
 
       {gameState === 'start' && <StartScreen onStart={startGame} highScore={highScore} />}
