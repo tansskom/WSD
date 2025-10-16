@@ -27,7 +27,7 @@ export default function StartScreen({ onStart, highScore }: StartScreenProps) {
       </p>
 
       <p className="mb-12 text-lg font-semibold drop-shadow-md" style={{ color: '#FF9900' }}>
-        Save Like a Ninja 🥷
+        Game by: Ageas Federal Life Insurance.
       </p>
 
       {/* High Score Display */}
